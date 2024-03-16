@@ -13,8 +13,8 @@
   </div>
 
   <div>
-    <%= form.label :currency, 'Currency' %>
-    <%= form.select :currency, [['SEK', 'SEK'], ['EUR', 'EUR'], ['USD', 'USD']], {}, { class: 'currency-selector' } %>
+    <%= label_tag :currency, 'Currency' %>
+    <%= select_tag :currency, options_for_select([['SEK', 'SEK'], ['EUR', 'EUR'], ['USD', 'USD']]), class: 'currency-selector' %>
   </div>
 
   <div>
