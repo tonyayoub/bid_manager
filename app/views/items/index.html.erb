@@ -1,7 +1,17 @@
-<!-- app/views/items/index.html.erb -->
 <% @items.each do |item| %>
   <div>
     <h2><%= item.name %></h2>
     <p><%= item.description %></p>
+    <% bid = @current_user.bids.find { |b| b.item_id == item.id } %>
+    <p>
+      <% if bid %>
+        <%= bid.amount %> SEK
+        <%# Display currency conversion options here %>
+        <%= link_to 'Edit Bid', edit_bid_path(id: bid.id) %>
+      <% else %>
+        No bid placed
+        <%= link_to 'Place Bid', new_bid_path(item_id: item.id) %>
+      <% end %>
+    </p>
   </div>
 <% end %>

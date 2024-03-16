@@ -1,0 +1,23 @@
+<!-- app/views/bids/new.html.erb -->
+<h1>Place a New Bid</h1>
+
+<%= form_with(model: Bid.new, url: bids_path, local: true) do |form| %>
+  <% if @item %>
+    <p>Item: <%= @item.name %></p>
+    <%= form.hidden_field :item_id, value: @item.id %>
+  <% else %>
+    <div>
+      <%= form.label :item_id %>
+      <%= form.collection_select :item_id, Item.all, :id, :name, include_blank: true %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :amount %>
+    <%= form.number_field :amount %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
