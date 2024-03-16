@@ -16,6 +16,7 @@ class BidsController < ApplicationController
 
   def edit
     @bid = Bid.find(params[:id])
+    @item = @bid.item
   end
 
   def update
@@ -33,3 +34,4 @@ class BidsController < ApplicationController
     params.require(:bid).permit(:amount, :item_id)
   end
 end
+

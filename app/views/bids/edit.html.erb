@@ -1,7 +1,7 @@
-<!-- app/views/bids/new.html.erb -->
-<h1>Place a New Bid</h1>
+<!-- app/views/bids/edit.html.erb -->
+<h1>Edit Bid</h1>
 
-<%= form_with(model: Bid.new, url: bids_path, local: true) do |form| %>
+<%= form_with(model: @bid, url: bid_path(@bid), local: true, method: :patch) do |form| %>
   <% if @item %>
     <p>Item: <%= @item.name %></p>
     <%= form.hidden_field :item_id, value: @item.id %>
@@ -9,7 +9,7 @@
 
   <div>
     <%= form.label :amount, 'Amount' %>
-    <%= form.number_field :amount, step: '0.01', class: 'amount-input' %>
+    <%= form.number_field :amount, value: @bid.amount, step: '0.01', class: 'amount-input' %>
   </div>
 
   <div>
@@ -18,6 +18,6 @@
   </div>
 
   <div>
-    <%= form.submit 'Submit Bid', class: 'submit-bid-button' %>
+    <%= form.submit 'Update Bid', class: 'submit-bid-button' %>
   </div>
 <% end %>
