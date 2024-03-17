@@ -7,7 +7,8 @@
       <% if bid %>
         <%= bid.amount %> SEK
         <%# Display currency conversion options here %>
-        <%= link_to 'Edit Bid', edit_bid_path(id: bid.id) %>
+        <%= link_to 'Edit', edit_bid_path(id: bid.id) %>
+        <%= button_to 'Delete', delete_bid_path(id: bid.id), method: :delete %>
       <% else %>
         No bid placed
         <%= link_to 'Place Bid', new_bid_path(item_id: item.id) %>
