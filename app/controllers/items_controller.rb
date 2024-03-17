@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @current_user = User.first
-    session[:indexCurrency] ||= 'SEK'
   end
 
   def change_currency
@@ -12,9 +11,7 @@ class ItemsController < ApplicationController
   end
 
   def convert_currency(amount, currency)
-    # Dummy conversion rates - you may want to replace these with real ones or a service
-    rates = {'SEK' => 1, 'EUR' => 0.1, 'USD' => 0.12}
-    converted_amount = amount * rates[currency]
+    converted_amount = CurrencyConverter.convert_to(amount, currency)
     [converted_amount, currency]
   end
 end

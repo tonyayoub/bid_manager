@@ -8,7 +8,8 @@
 
   <div>
     <%= form.label :amount, 'Amount' %>
-    <%= form.number_field :amount, value: sprintf('%.2f', bid.amount || 0), step: '10', min: '10', class: 'amount-input', onkeydown: "return event.key != 'ArrowDown' && event.key != 'ArrowUp' && event.key != '-' && event.key != '.';" %>
+    <% converted_amount = convert_currency(bid.amount, session[:currency] || 'SEK') %>
+    <%= form.number_field :amount, value: sprintf('%.2f', converted_amount || 0), step: '10', min: '10', class: 'amount-input', onkeydown: "return event.key != 'ArrowDown' && event.key != 'ArrowUp' && event.key != '-' && event.key != '.';" %>
   </div>
 
   <div>
