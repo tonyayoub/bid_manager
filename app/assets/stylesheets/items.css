@@ -1,0 +1,43 @@
+/* app/assets/stylesheets/items.css */
+
+.items-container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.item-details,
+.bid-status {
+    flex: 1;
+}
+
+.item-title {
+    font-weight: bold;
+    margin: 0;
+}
+
+.item-description {
+    margin: 0;
+}
+
+.bid-status {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn {
+    margin-left: 1rem;
+}
+
+.bid-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}

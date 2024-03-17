@@ -1,18 +1,23 @@
-<% @items.each do |item| %>
-  <div>
-    <h2><%= item.name %></h2>
-    <p><%= item.description %></p>
-    <% bid = @current_user.bids.find { |b| b.item_id == item.id } %>
-    <p>
-      <% if bid %>
-        <%= bid.amount %> SEK
-        <%# Display currency conversion options here %>
-        <%= link_to 'Edit', edit_bid_path(id: bid.id) %>
-        <%= button_to 'Delete', delete_bid_path(id: bid.id), method: :delete %>
-      <% else %>
-        No bid placed
-        <%= link_to 'Place Bid', new_bid_path(item_id: item.id) %>
-      <% end %>
-    </p>
-  </div>
-<% end %>
+<div class="items-container">
+  <% @items.each do |item| %>
+    <div class="item-row">
+      <div class="item-details">
+        <p class="item-title"><%= item.name %></p>
+        <p class="item-description"><%= item.description %></p>
+      </div>
+      <% bid = @current_user.bids.find { |b| b.item_id == item.id } %>
+      <p>
+        <div class="bid-info">
+          <% if bid %>
+            <%= bid.amount %> SEK
+            <%# Display currency conversion options here %>
+            <%= link_to 'Edit', edit_bid_path(id: bid.id) %>
+            <%= button_to 'Delete', delete_bid_path(id: bid.id), method: :delete %>
+          <% else %>
+            <%= link_to 'Place Bid', new_bid_path(item_id: item.id) %>
+          <% end %>
+        </div>
+      </p>
+    </div>
+  <% end %>
+</div>
