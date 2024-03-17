@@ -6,18 +6,16 @@
         <p class="item-description"><%= item.description %></p>
       </div>
       <% bid = @current_user.bids.find { |b| b.item_id == item.id } %>
-      <p>
-        <div class="bid-info">
-          <% if bid %>
-            <%= bid.amount %> SEK
-            <%# Display currency conversion options here %>
-            <%= link_to 'Edit', edit_bid_path(id: bid.id) %>
-            <%= button_to 'Delete', delete_bid_path(id: bid.id), method: :delete %>
-          <% else %>
-            <%= link_to 'Place Bid', new_bid_path(item_id: item.id) %>
-          <% end %>
-        </div>
-      </p>
+      <div class="bid-info">
+        <% if bid %>
+          <%= link_to "#{bid.amount} SEK", edit_bid_path(id: bid.id), class: "bid-link" %>
+          <div class="actions-row">
+            <%= button_to 'Delete', delete_bid_path(id: bid.id), method: :delete, class: "action-link" %>
+          </div>
+        <% else %>
+          <%= link_to 'Place Bid', new_bid_path(item_id: item.id) %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>

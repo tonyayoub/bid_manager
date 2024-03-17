@@ -1,0 +1,22 @@
+<%# app/views/bids/_bid_form.html.erb %>
+
+<%= form_with(model: bid, local: true) do |form| %>
+  <% if item %>
+    <p>Item: <%= item.name %></p>
+    <%= form.hidden_field :item_id, value: item.id %>
+  <% end %>
+
+  <div>
+    <%= form.label :amount, 'Amount' %>
+    <%= form.number_field :amount, value: bid.amount, step: '0.01', class: 'amount-input' %>
+  </div>
+
+  <div>
+    <%= form.label :currency, 'Currency' %>
+    <%= select_tag :currency, options_for_select([['SEK', 'SEK'], ['EUR', 'EUR'], ['USD', 'USD']]), class: 'currency-selector' %>
+  </div>
+
+  <div>
+    <%= form.submit bid.new_record? ? 'Submit Bid' : 'Update Bid', class: 'submit-bid-button' %>
+  </div>
+<% end %>
