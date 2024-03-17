@@ -8,15 +8,16 @@
 
   <div>
     <%= form.label :amount, 'Amount' %>
-    <%= form.number_field :amount, value: bid.amount, step: '0.01', class: 'amount-input' %>
+    <%= form.number_field :amount, value: sprintf('%.2f', bid.amount || 0), step: '10', min: '10', class: 'amount-input', onkeydown: "return event.key != 'ArrowDown' && event.key != 'ArrowUp' && event.key != '-' && event.key != '.';" %>
   </div>
 
   <div>
     <%= form.label :currency, 'Currency' %>
-    <%= select_tag :currency, options_for_select([['SEK', 'SEK'], ['EUR', 'EUR'], ['USD', 'USD']]), class: 'currency-selector' %>
+    <%= select_tag :currency, options_for_select([['SEK', 'SEK'], ['EUR', 'EUR'], ['USD', 'USD']], selected: session[:currency] || 'SEK'), class: 'currency-selector' %>
   </div>
 
   <div>
     <%= form.submit bid.new_record? ? 'Submit Bid' : 'Update Bid', class: 'submit-bid-button' %>
   </div>
 <% end %>
+

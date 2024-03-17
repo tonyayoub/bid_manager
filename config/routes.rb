@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   post '/bids', to: 'bids#create'
   get '/bids/:id/edit', to: 'bids#edit', as: 'edit_bid'
   delete '/bids/:id', to: 'bids#destroy', as: 'delete_bid'
-  patch '/bids/:id', to: 'bids#update', as: 'bid' 
+  patch '/bids/:id', to: 'bids#update', as: 'bid'
+  post 'change_currency', to: 'items#change_currency'
 end

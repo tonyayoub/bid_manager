@@ -8,7 +8,8 @@
       <% bid = @current_user.bids.find { |b| b.item_id == item.id } %>
       <div class="bid-info">
         <% if bid %>
-          <%= link_to "#{bid.amount} SEK", edit_bid_path(id: bid.id), class: "bid-link" %>
+          <% converted_amount, currency = convert_currency(bid.amount, session[:currency] || 'SEK') %>
+          <%= link_to "#{number_to_currency(converted_amount, unit: currency, precision: 2)}", edit_bid_path(id: bid.id), class: "bid-link" %>
           <div class="actions-row">
             <%= button_to 'Delete', delete_bid_path(id: bid.id), method: :delete, class: "action-link" %>
           </div>
@@ -18,4 +19,7 @@
       </div>
     </div>
   <% end %>
+  <%= form_tag(change_currency_path, method: "post") do %>
+  <%= select_tag :currency, options_for_select([['SEK', 'SEK'], ['EUR', 'EUR'], ['USD', 'USD']], selected: session[:currency]), onchange: 'this.form.submit();' %>
+<% end %>
 </div>
