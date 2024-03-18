@@ -1,24 +1,31 @@
-# README
+# Bid Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A sample Ruby on Rails project
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+Before you begin, ensure you have met the following requirements:
 
-* System dependencies
+- **Docker**: The project is containerized with Docker. You need Docker and Docker Compose installed on your machine to build and run the application. For installation instructions, visit [Docker's official website](https://www.docker.com/get-started).
 
-* Configuration
+## Installation & Running the Application
 
-* Database creation
+Follow these steps to get your application up and running:
 
-* Database initialization
+```bash
+# Clone the repository
+git clone https://github.com/tonyayoub/bid_manager.git
+cd bid_manager
 
-* How to run the test suite
+# Build the Docker images
+docker-compose build
 
-* Services (job queues, cache servers, search engines, etc.)
+# Start the application
+docker-compose up
 
-* Deployment instructions
+# To run the containers in detached mode (in the background):
+docker-compose up -d
 
-* ...
+# To stop the application:
+docker-compose down
+
