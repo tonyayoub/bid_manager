@@ -1,4 +1,14 @@
 <div class="items-container">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+  <h1>Available Items</h1>
+  <div>
+    <h4 style="margin-right: 10px; display: inline-block;">Select Currency</h4>
+    <%= form_tag(change_currency_path, method: "post", style: "display: inline-block;") do %>
+      <%= select_tag :currency, options_for_select([['SEK', 'SEK'], ['EUR', 'EUR'], ['USD', 'USD']], selected: session[:currency]), onchange: 'this.form.submit();', style: "font-size: 16px; padding: 5px 10px; vertical-align: middle;" %>
+    <% end %>
+  </div>
+</div>
+
   <% @items.each do |item| %>
     <div class="item-row">
       <div class="item-details">
@@ -19,7 +29,4 @@
       </div>
     </div>
   <% end %>
-  <%= form_tag(change_currency_path, method: "post") do %>
-  <%= select_tag :currency, options_for_select([['SEK', 'SEK'], ['EUR', 'EUR'], ['USD', 'USD']], selected: session[:currency]), onchange: 'this.form.submit();' %>
-<% end %>
 </div>
